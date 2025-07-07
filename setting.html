@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>सेटिंग्स | Settings</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Noto Sans Devanagari', sans-serif;
+      background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+      color: #222;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      /* Glassmorphism effect */
+      backdrop-filter: blur(2px);
+    }
+    header {
+      width: 100%;
+      background: linear-gradient(90deg, #7f53ac 0%, #657ced 100%);
+      color: #fff;
+      padding: 1.2rem 0.5rem 1rem 0.5rem;
+      text-align: center;
+      box-shadow: 0 2px 16px rgba(98,0,234,0.13);
+      font-size: 2rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+      position: relative;
+      border-bottom-left-radius: 1.5rem;
+      border-bottom-right-radius: 1.5rem;
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    .back-btn {
+      position: absolute;
+      left: 18px;
+      top: 18px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      outline: none;
+      z-index: 2;
+    }
+    .back-btn span {
+      font-size: 2.1rem;
+      color: #fff;
+      vertical-align: middle;
+    }
+    .back-btn:hover span {
+      color: #ffd6e0;
+    }
+    .settings-container {
+      background: rgba(255,255,255,0.85);
+      border-radius: 1.5rem;
+      box-shadow: 0 4px 32px rgba(98,0,234,0.10), 0 1.5px 8px rgba(0,0,0,0.07);
+      margin-top: 2.5rem;
+      padding: 2.5rem 2.5rem 2rem 2.5rem;
+      max-width: 420px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 2.2rem;
+      border: 1.5px solid #e0e0e0;
+      position: relative;
+    }
+    .settings-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #7f53ac;
+      margin-bottom: 1.2rem;
+      letter-spacing: 0.5px;
+      text-align: left;
+    }
+    .setting-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1.1rem 0.2rem 1.1rem 0.2rem;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .setting-row:last-child {
+      border-bottom: none;
+    }
+    .setting-label {
+      font-size: 1.13rem;
+      font-weight: 500;
+      color: #444;
+    }
+    .setting-switch {
+      width: 52px;
+      height: 28px;
+      background: #e0e0e0;
+      border-radius: 14px;
+      position: relative;
+      cursor: pointer;
+      transition: background 0.2s, border 0.2s;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+      border: 2.5px solid #bdbdbd;
+      outline: 2px solid #d1c4e9;
+      outline-offset: 2px;
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
+    }
+    .setting-switch.active {
+      background: linear-gradient(90deg, #7f53ac 0%, #657ced 100%);
+      border-color: #7f53ac;
+      outline: 2px solid #b39ddb;
+    }
+    .setting-knob {
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 24px;
+      height: 24px;
+      background: #fff;
+      border-radius: 50%;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.10);
+      transition: left 0.22s cubic-bezier(.4,2,.6,1), background 0.2s;
+    }
+    .setting-switch.active .setting-knob {
+      left: 26px;
+      background: #f3e8ff;
+    }
+    .status-msg {
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 1rem;
+      color: #388e3c;
+      font-weight: 500;
+      min-height: 1.2em;
+    }
+    .lang-select {
+      font-size: 1.08rem;
+      padding: 0.4rem 1.2rem 0.4rem 0.7rem;
+      border-radius: 1.2rem;
+      border: 2px solid #bdbdbd;
+      background: #f8f8ff;
+      color: #444;
+      outline: none;
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+      transition: border 0.2s;
+    }
+    .lang-select:focus {
+      border: 2px solid #7f53ac;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <button onclick="window.location.href='index.html'" class="back-btn" title="Back" style="position:absolute;left:18px;top:18px;background:none;border:none;cursor:pointer;padding:0;outline:none;z-index:2;">
+      <span class="material-icons" style="font-size:2.1rem;color:#fff;vertical-align:middle;">arrow_back</span>
+    </button>
+    <span class="material-icons" style="font-size:2.2rem;vertical-align:middle;margin-right:0.5rem;color:#fff;">settings</span>
+    <span style="vertical-align:middle;">सेटिंग्स</span>
+  </header>
+  <div class="settings-container">
+    <div class="settings-title">General Settings</div>
+    <div class="setting-row">
+      <span class="setting-label">डार्क मोड</span>
+      <div class="setting-switch" id="darkSwitch" onclick="toggleSwitch(this, 'setting_dark')">
+        <div class="setting-knob"></div>
+      </div>
+    </div>
+    <div class="setting-row">
+      <span class="setting-label">नोटिफिकेशन</span>
+      <div class="setting-switch" id="notifSwitch" onclick="toggleSwitch(this, 'setting_notif')">
+        <div class="setting-knob"></div>
+      </div>
+    </div>
+    <div class="setting-row">
+      <span class="setting-label">Language</span>
+      <select id="langSelect" class="lang-select" onchange="saveLanguage()">
+        <option value="hi">हिंदी (Hindi)</option>
+        <option value="en">English</option>
+        <option value="gu">ગુજરાતી (Gujarati)</option>
+        <option value="mr">मराठी (Marathi)</option>
+        <option value="bn">বাংলা (Bengali)</option>
+        <option value="ta">தமிழ் (Tamil)</option>
+        <option value="te">తెలుగు (Telugu)</option>
+        <option value="pa">ਪੰਜਾਬੀ (Punjabi)</option>
+        <option value="ur">اردو (Urdu)</option>
+        <option value="or">ଓଡ଼ିଆ (Odia)</option>
+        <option value="ml">മലയാളം (Malayalam)</option>
+        <option value="kn">ಕನ್ನಡ (Kannada)</option>
+      </select>
+    </div>
+    <div class="status-msg" id="statusMsg"></div>
+  </div>
+  <script>
+    function saveLanguage() {
+      const lang = document.getElementById('langSelect').value;
+      localStorage.setItem('setting_lang', lang);
+      document.getElementById('statusMsg').textContent = 'Language saved!';
+      setTimeout(()=>{
+        document.getElementById('statusMsg').textContent = '';
+      }, 1200);
+    }
+    function toggleSwitch(el, key) {
+      el.classList.toggle('active');
+      // Auto-save on toggle
+      const dark = document.getElementById('darkSwitch').classList.contains('active');
+      const notif = document.getElementById('notifSwitch').classList.contains('active');
+      localStorage.setItem('setting_dark', dark);
+      localStorage.setItem('setting_notif', notif);
+      document.getElementById('statusMsg').textContent = 'सेटिंग्स सेव हो गईं!';
+      setTimeout(()=>{
+        document.getElementById('statusMsg').textContent = '';
+      }, 1200);
+      // Optionally, apply dark mode instantly
+      if(key === 'setting_dark') {
+        if(dark) {
+          document.body.style.background = '#222';
+          document.body.style.color = '#fff';
+        } else {
+          document.body.style.background = 'linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%)';
+          document.body.style.color = '#222';
+        }
+      }
+    }
+    // Load settings on page load
+    window.onload = function() {
+      if(localStorage.getItem('setting_dark') === 'true') document.getElementById('darkSwitch').classList.add('active');
+      if(localStorage.getItem('setting_notif') === 'true') document.getElementById('notifSwitch').classList.add('active');
+      // Set language select
+      const lang = localStorage.getItem('setting_lang') || 'hi';
+      document.getElementById('langSelect').value = lang;
+      if(localStorage.getItem('setting_dark') === 'true') {
+        document.body.style.background = '#222';
+        document.body.style.color = '#fff';
+      }
+    }
+  </script>
+</body>
+</html>
